@@ -24,12 +24,12 @@ refs.stopBtn.addEventListener('click', () => {
   clearInterval(timerId);
 });
 
-function bodyColorSwitcher() {
+const bodyColorSwitcher = () => {
   const randomColor = randomIntegerFromInterval(0, colors.length - 1);
   refs.body.style.backgroundColor = colors[randomColor];
 };
 
-function toggleDisabledAttribute() {
+const toggleDisabledAttribute = () => {
   refs.startBtn.toggleAttribute('disabled');
   refs.stopBtn.toggleAttribute('disabled');  
 };
