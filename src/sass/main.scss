@@ -1,7 +1,12 @@
-/*
- * Главный файл стилей.
- * Все паршалы подключаются сюда.
- */
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: background-color 500ms linear;
+}
 
-// Стили для файла с примером HTML-фрагмента
-@import './example';
+button {
+  margin: 5px;
+}
