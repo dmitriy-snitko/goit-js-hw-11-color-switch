@@ -25,7 +25,7 @@ window.onload = () => {
 };
 
 const onStart = () => {
-  toggleDisabledAttribute(buttons);
+  toggleAttributeDisabled(buttons);
   bodyColorSwitch();
 
   timerId = setInterval(() => {
@@ -34,7 +34,7 @@ const onStart = () => {
 };
 
 const onStop = () => {
-  toggleDisabledAttribute(buttons);
+  toggleAttributeDisabled(buttons);
   clearInterval(timerId);
 };
 
@@ -45,7 +45,7 @@ const bodyColorSwitch = () => {
   refs.body.style.backgroundColor = colors[randomIndex];
 };
 
-const toggleDisabledAttribute = (buttons) => {
+const toggleAttributeDisabled = (buttons) => {
   buttons.forEach(btn => btn.toggleAttribute('disabled'));
 };
 
