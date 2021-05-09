@@ -5,33 +5,48 @@ const refs = {
   body: document.querySelector('body'),
   startBtn: document.querySelector('button[data-action = start]'),
   stopBtn: document.querySelector('button[data-action = stop]'),
+  resetBtn: document.querySelector('button[data-action = reset]'),
 };
+
+const buttons = [
+  refs.startBtn,
+  refs.stopBtn,
+  refs.resetBtn
+];
 
 let timerId = null;
 
-refs.startBtn.addEventListener('click', () => {
-  toggleDisabledAttribute();
-  bodyColorSwitcher();
+window.onload = () => {
+  refs.stopBtn.disabled = true;
 
-  timerId = setInterval(() => {
-    bodyColorSwitcher();
-  }, 1000);
-});
-
-
-refs.stopBtn.addEventListener('click', () => {
-  toggleDisabledAttribute();
-  clearInterval(timerId);
-});
-
-const bodyColorSwitcher = () => {
-  const randomColor = randomIntegerFromInterval(0, colors.length - 1);
-  refs.body.style.backgroundColor = colors[randomColor];
+  refs.startBtn.addEventListener('click', onStart);
+  refs.stopBtn.addEventListener('click', onStop);
+  refs.resetBtn.addEventListener('click', onReset);
 };
 
-const toggleDisabledAttribute = () => {
-  refs.startBtn.toggleAttribute('disabled');
-  refs.stopBtn.toggleAttribute('disabled');  
+const onStart = () => {
+  toggleDisabledAttribute(buttons);
+  bodyColorSwitch();
+
+  timerId = setInterval(() => {
+    bodyColorSwitch();
+  }, 1000);
+};
+
+const onStop = () => {
+  toggleDisabledAttribute(buttons);
+  clearInterval(timerId);
+};
+
+const onReset = () => refs.body.style.backgroundColor = 'white';
+
+const bodyColorSwitch = () => {
+  const randomIndex = randomIntegerFromInterval(0, colors.length - 1);
+  refs.body.style.backgroundColor = colors[randomIndex];
+};
+
+const toggleDisabledAttribute = (buttons) => {
+  buttons.forEach(btn => btn.toggleAttribute('disabled'));
 };
 
 const randomIntegerFromInterval = (min, max) => {
